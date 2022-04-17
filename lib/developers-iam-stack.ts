@@ -19,6 +19,7 @@ export class DefaultDevelopersPermissionsStack extends CDK.Stack {
     });
 
     this.grantBasicPermissions();
+    this.grantIAMPermissions();
     this.grantS3Permissions();
     this.grantCloudWatchPermissions();
     this.grantEc2Permissions();
@@ -39,6 +40,20 @@ export class DefaultDevelopersPermissionsStack extends CDK.Stack {
     );
     this.developersGroup.addManagedPolicy(
       IAM.ManagedPolicy.fromAwsManagedPolicyName("AWSCloudFormationFullAccess")
+    );
+  }
+
+  private grantIAMPermissions() {
+    this.developersGroup.addToPolicy(
+      new IAM.PolicyStatement({
+        sid: "IamAccess",
+        resources: ["*"],
+        effect: IAM.Effect.ALLOW,
+        actions: [
+          "iam:ChangePassword",
+          "iam:PassRole"
+        ],
+      })
     );
   }
 

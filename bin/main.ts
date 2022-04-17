@@ -7,7 +7,7 @@ const packageName = "AWSMicroAccountDefaultIamSetup";
 const prodEnv : CDK.Environment = { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION};
 const app = new CDK.App();
 
-new DefaultDevelopersPermissionsStack(app, `${packageName}Stack`, {
+new DefaultDevelopersPermissionsStack(app, `${packageName}-DefaultDevelopersPermissionsStack`, {
   packageName: packageName,
   env: prodEnv,
   description: `The default developers IAM permissions setup by ${packageName}.`
