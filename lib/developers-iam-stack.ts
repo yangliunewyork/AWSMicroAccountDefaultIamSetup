@@ -20,6 +20,8 @@ export class DefaultDevelopersPermissionsStack extends CDK.Stack {
 
     this.grantBasicPermissions();
     this.grantIAMPermissions();
+    this.grantPipelinePermissions();
+    this.grantCodeBuildPermissions();
     this.grantS3Permissions();
     this.grantCloudWatchPermissions();
     this.grantEc2Permissions();
@@ -56,6 +58,33 @@ export class DefaultDevelopersPermissionsStack extends CDK.Stack {
       })
     );
   }
+
+  private grantPipelinePermissions() {
+    this.developersGroup.addToPolicy(
+      new IAM.PolicyStatement({
+        sid: "PipelineAccess",
+        resources: ["*"],
+        effect: IAM.Effect.ALLOW,
+        actions: [
+          "codepipeline:*"
+        ],
+      })
+    );
+  }
+
+  private grantCodeBuildPermissions() {
+    this.developersGroup.addToPolicy(
+      new IAM.PolicyStatement({
+        sid: "CodeBuildAccess",
+        resources: ["*"],
+        effect: IAM.Effect.ALLOW,
+        actions: [
+          "codebuild:*",
+        ],
+      })
+    );
+  }
+
 
   private grantS3Permissions() {
     this.developersGroup.addToPolicy(
@@ -207,6 +236,7 @@ export class DefaultDevelopersPermissionsStack extends CDK.Stack {
         effect: IAM.Effect.ALLOW,
         actions: [
           "secretsmanager:Get*",
+          "secretsmanager:List*",
           "secretsmanager:Describe*",
           "secretsmanager:Create*",
         ],
