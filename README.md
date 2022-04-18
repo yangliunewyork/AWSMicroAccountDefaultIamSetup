@@ -15,8 +15,25 @@ This setup will create these IAM groups and roles(from least to most privileges)
 Some reference:
 * https://aws.amazon.com/blogs/architecture/field-notes-how-factset-uses-microaccounts-to-reduce-developer-friction-and-maintain-security-at-scale/
 
-## Useful commands
+## Build and deploy
 
+Build the whole project:  
+
+```
+cdk synth  
+```
+
+List all the generated stacks:  
+```
+cdk list
+```
+
+To deploy a specific stack:  
+```
+cdk deploy AWSMicroAccountDefaultIamSetup-DefaultDevelopersPermissionsStack --profile RootUser
+```
+
+Other userful commands:  
 * `npm run build`   compile typescript to js
 * `npm run watch`   watch for changes and compile
 * `npm run test`    perform the jest unit tests
