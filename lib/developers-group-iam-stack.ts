@@ -38,6 +38,9 @@ export class DefaultDevelopersPermissionsStack extends CDK.Stack {
   private grantBasicPermissions() {
     // Can't have more than 10 managed policies attached to an IAM role
     this.developersGroup.addManagedPolicy(
+      IAM.ManagedPolicy.fromAwsManagedPolicyName("ReadOnlyAccess")
+    );
+    this.developersGroup.addManagedPolicy(
       IAM.ManagedPolicy.fromAwsManagedPolicyName("AmazonVPCFullAccess")
     );
     this.developersGroup.addManagedPolicy(
