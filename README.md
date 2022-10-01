@@ -34,7 +34,7 @@ This is recommended as you don't want anybody has the permissions to update IAM.
 You will need bootstrap the account first:
 
 ```
-cdk bootstrap --profile=RootUser 
+cdk bootstrap --profile RootUser 
 ```
 
 To deploy a specific stack:  
