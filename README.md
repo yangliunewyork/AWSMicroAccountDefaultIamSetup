@@ -31,6 +31,12 @@ cdk list
 I created a `RootUser` that as the root user of the whole AWS account, and use it to update IAM groups/roles/users.
 This is recommended as you don't want anybody has the permissions to update IAM.
 
+You will need bootstrap the account first:
+
+```
+cdk bootstrap --profile=RootUser 
+```
+
 To deploy a specific stack:  
 ```
 cdk deploy AWSMicroAccountDefaultIamSetup-DefaultDevelopersPermissionsStack --profile RootUser
